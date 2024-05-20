@@ -1,6 +1,21 @@
 // import React from 'react'
 
+import useAuth from "../hooks/useAuth"
+
 const Navbar = () => {
+
+  const {logOut,user}=useAuth;
+
+  
+  const handleLogout = async()=>{
+    await logOut()
+  }
+  // const handleLogout = ()=>{
+  //   logOut()
+  // }
+
+
+
     return (
         <>
           <div className="navbar bg-base-100">
@@ -22,6 +37,8 @@ const Navbar = () => {
           </ul>
         </li>
         <li><a href="dashboard">Dashboard</a></li>
+        {/* <li><button onClick={()=>logOut()}   className="btn bg-red-900 text-white">LogOut</button></li> */}
+        <li><button onClick={handleLogout}   className="btn bg-red-900 text-white">LogOut</button></li>
       </ul>
     </div>
     <a className="btn btn-ghost text-xl">daisyUI</a>
@@ -42,10 +59,16 @@ const Navbar = () => {
         </details>
       </li>
       <li><a href="dashboard">Dashboard</a></li>
+      {/* <li><button  onClick={()=>logOut()}  className="btn bg-red-900 text-white">LogOut</button></li> */}
+      <li><button  onClick={handleLogout}  className="btn bg-red-900 text-white">LogOut</button></li>
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Button</a>
+  <div className="avatar">
+          <div className="w-12 rounded-full border-2 border-black">
+            <img src={user?.photoURL || "/public/placeholder.jpg"} />
+          </div>
+        </div>
   </div>
 </div>
         </>

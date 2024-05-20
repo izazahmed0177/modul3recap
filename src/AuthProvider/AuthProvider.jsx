@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword,signInWithPopup,signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { app } from "../firebase/firebase.config";
 // import GoogleLogin from './../components/Login-Registration/GoogleLogin';
@@ -13,6 +13,8 @@ const AuthProvider=({children})=>{
 
     const [user,setUser]=useState(null)
 
+    const [loading,setLoading]=useState(true)
+
 
 
 
@@ -20,20 +22,24 @@ const AuthProvider=({children})=>{
 const googleProvider=new GoogleAuthProvider();
 // ==========Registation ===================
 const createUser=(email,password)=>{
+
+    setLoading(true)
 return createUserWithEmailAndPassword(auth,email,password)
 }
 
 // ====================
 // =======sign in===============
-const signin=(email,password)=>{
+const signIn=(email,password)=>{
+    setLoading(true)
     return signInWithEmailAndPassword(auth,email,password)
 }
 
 
 // ====================
 // ========logout============
-const logout=()=>{
-    return signOut()
+const logOut=()=>{
+
+    return signOut(auth).then(()=>setUser(null));
 }
 // ================
 
@@ -50,7 +56,10 @@ const unscubcribe=onAuthStateChanged(auth,currentUser=>{
     if (currentUser) {
         setUser(currentUser)
         console.log(currentUser);
-    } 
+        setLoading(false)
+    } else{
+        setLoading(false)
+    }
 })
 
 return ()=>{
@@ -61,7 +70,7 @@ return ()=>{
 
 
 
-const authInfo={user,googleLogin,createUser,signin,logout}
+const authInfo={user,googleLogin,createUser,signIn,logOut,loading}
 
 return(
     <AuthContext.Provider value={authInfo}>

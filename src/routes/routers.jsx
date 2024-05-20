@@ -7,6 +7,7 @@ import ErrorPage from "../pages/ErrorPage";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Dashboard from "../pages/Dashboard";
 import Registration from "../pages/Registration";
+import PrivateRoute from "./pravite/PrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -44,7 +45,9 @@ export const router = createBrowserRouter([
         children:[
             {
                 path:"",
-                element:<Dashboard></Dashboard>
+                element:<PrivateRoute>
+                    <Dashboard></Dashboard>
+                </PrivateRoute>
             }
         ]
     },
