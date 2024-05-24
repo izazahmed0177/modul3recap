@@ -10,6 +10,7 @@ import Registration from "../pages/Registration";
 import PrivateRoute from "./pravite/PrivateRoute";
 import ProductsDetels from "../pages/ProductsDetels";
 import AllProducts from "../pages/AllProducts";
+import AddProducts from "../pages/AddProducts";
 
 
 export const router = createBrowserRouter([
@@ -62,6 +63,12 @@ export const router = createBrowserRouter([
                 path:"dashboard/all-products",
                 element:<PrivateRoute>
                     <AllProducts></AllProducts>
+                </PrivateRoute>
+            },
+            {
+                path:"dashboard/add-products",
+                element:<PrivateRoute>
+                    <AddProducts></AddProducts>
                 </PrivateRoute>
             },
         ]
