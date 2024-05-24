@@ -11,6 +11,7 @@ import PrivateRoute from "./pravite/PrivateRoute";
 import ProductsDetels from "../pages/ProductsDetels";
 import AllProducts from "../pages/AllProducts";
 import AddProducts from "../pages/AddProducts";
+import EditProducts from "../pages/EditProducts";
 
 
 export const router = createBrowserRouter([
@@ -55,22 +56,40 @@ export const router = createBrowserRouter([
         children:[
             {
                 path:"",
-                element:<PrivateRoute>
+                element:(
+                <PrivateRoute>
                     <Dashboard></Dashboard>
                 </PrivateRoute>
+                ),
             },
             {
                 path:"dashboard/all-products",
-                element:<PrivateRoute>
+                element:(
+                <PrivateRoute>
                     <AllProducts></AllProducts>
                 </PrivateRoute>
+                ),
             },
             {
                 path:"dashboard/add-products",
-                element:<PrivateRoute>
+                element:(
+                <PrivateRoute>
                     <AddProducts></AddProducts>
                 </PrivateRoute>
+                ),
+            },
+            {
+                path:"dashboard/all-products/edit/:id",
+                element:(
+                <PrivateRoute>
+                    <EditProducts></EditProducts>
+                </PrivateRoute>
+                ),
+                loader:({params})=>fetch(`http://localhost:3000/shoes/${params.id}`)
             },
         ]
     },
   ]);
+
+
+//   http://localhost:5173/dashboard/dashboard/all-products/edit/1

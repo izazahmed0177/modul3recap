@@ -13,7 +13,12 @@ function AllProducts( ) {
         // .then((data)=>console.log(data))
         .then((data)=>setProducts(data))
 
-    },[])
+    },[]);
+
+
+    const handaleDeleteProduct=(id)=>{
+        setProducts(products.filter((product)=>product.id !==id));
+    }
 
 
 
@@ -23,7 +28,7 @@ function AllProducts( ) {
         <div className="my-16 flex flex-wrap gap-5">
         {
             products.map((shoe)=>
-            <SingleProductCardDashboard key={shoe.id} shoe={shoe}></SingleProductCardDashboard>
+            <SingleProductCardDashboard key={shoe.id} shoe={shoe} onDelete={handaleDeleteProduct}></SingleProductCardDashboard>
             )
         }
 

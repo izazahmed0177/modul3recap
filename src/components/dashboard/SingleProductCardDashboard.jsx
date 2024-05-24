@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-export default function SingleProductCardDashboard({shoe}) {
+export default function SingleProductCardDashboard({shoe,onDelete}) {
     // eslint-disable-next-line react/prop-types
     const {id, title ,brand,price,description,image_url}=shoe;
     console.log(id); 
@@ -14,6 +14,7 @@ export default function SingleProductCardDashboard({shoe}) {
         })
         .then((res)=>res.json())
         .then((data)=>console.log(data))
+        onDelete(id)
 
     }
 
@@ -48,7 +49,7 @@ export default function SingleProductCardDashboard({shoe}) {
     </button>
     <button className="btn bg-green-600 text-white">
 
-      <Link to={`/products/${id}`} className="">Edit</Link>
+      <Link to={`edit/${id}`} className="">Edit</Link>
     </button>
     <button onClick={hendleDelete} className="btn bg-red-600 text-white">
 
