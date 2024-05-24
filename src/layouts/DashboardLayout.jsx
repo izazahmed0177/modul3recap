@@ -1,6 +1,6 @@
 // import React from 'react'
 
-import { Link, Outlet } from "react-router-dom";
+import {  NavLink, Outlet } from "react-router-dom";
 
 export default function DashboardLayout() {
   return (
@@ -38,16 +38,41 @@ export default function DashboardLayout() {
 <div className="col-span-2 bg-gray-300 min-h-screen p-12">
   <ul>
     <li className="border border-black p-4 text w-full">
-      <Link to={"home"}>Dashboard</Link>
+      {/* <Link to={""}>Dashboard</Link> */}
+      <NavLink   style={({ isActive, isPending, isTransitioning }) => {
+    return {
+      fontWeight: isActive ? "bold" : "",
+      color: isPending ? "red" : "black",
+      viewTransitionName: isTransitioning ? "slide" : "",
+    };
+  }}
+  
+  to={''}>Dashboard</NavLink>
     </li>
     <li className="border border-black p-4 text w-full">
-      <Link to={"all-products"}>All Products</Link>
+      <NavLink  style={({ isActive, isPending, isTransitioning }) => {
+    return {
+      fontWeight: isActive ? "bold" : "",
+      color: isPending ? "red" : "black",
+      viewTransitionName: isTransitioning ? "slide" : "",
+    };
+  }} 
+  
+  to={"dashboard/all-products"}>All Products</NavLink>
     </li>
     <li className="border border-black p-4 text w-full">
-      <Link to={"add-products"}>Add Product</Link>
+      <NavLink   style={({ isActive, isPending, isTransitioning }) => {
+    return {
+      fontWeight: isActive ? "bold" : "",
+      color: isPending ? "red" : "black",
+      viewTransitionName: isTransitioning ? "slide" : "",
+    };
+  }}
+  
+   to={"dashboard/add-products"}>Add Product</NavLink>
     </li>
     <li className="border border-black p-4 text w-full">
-      <Link to={"/"}>Home</Link>
+      <NavLink to={"/"}>Home</NavLink>
     </li>
   </ul>
 </div>

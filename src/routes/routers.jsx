@@ -9,6 +9,7 @@ import Dashboard from "../pages/Dashboard";
 import Registration from "../pages/Registration";
 import PrivateRoute from "./pravite/PrivateRoute";
 import ProductsDetels from "../pages/ProductsDetels";
+import AllProducts from "../pages/AllProducts";
 
 
 export const router = createBrowserRouter([
@@ -56,7 +57,13 @@ export const router = createBrowserRouter([
                 element:<PrivateRoute>
                     <Dashboard></Dashboard>
                 </PrivateRoute>
-            }
+            },
+            {
+                path:"dashboard/all-products",
+                element:<PrivateRoute>
+                    <AllProducts></AllProducts>
+                </PrivateRoute>
+            },
         ]
     },
   ]);
