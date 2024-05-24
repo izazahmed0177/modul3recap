@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import SingleProduct from "../components/home/SingleProduct";
+// import SingleProduct from "../components/home/SingleProduct";
+import SingleProductCardDashboard from "../components/dashboard/SingleProductCardDashboard";
 
 
 function AllProducts( ) {
@@ -22,7 +23,7 @@ function AllProducts( ) {
         <div className="my-16 flex flex-wrap gap-5">
         {
             products.map((shoe)=>
-            <SingleProduct key={shoe.id} shoe={shoe}></SingleProduct>
+            <SingleProductCardDashboard key={shoe.id} shoe={shoe}></SingleProductCardDashboard>
             )
         }
 
