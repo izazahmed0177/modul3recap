@@ -2,7 +2,7 @@
 
 export default function AddProducts() {
 
-    const handleSubmit=(e)=>{
+    const handleSubmit=async(e)=>{
         e.preventDefault();
         const form=e.target;
         const id=form.id.value;
@@ -15,7 +15,26 @@ export default function AddProducts() {
         // console.log(id,title,price,brand,description,image_url);
 
         const data={id,title,brand,price,description,image_url}
-        console.log(data);
+        // console.log(data);
+
+
+
+        // POST REQUESR
+        await fetch("http://localhost:3000/shoes",{
+          method:"POST",
+          headers:{
+            "Content-type":"application/json"
+          },
+          body:JSON.stringify(data)
+
+        })
+        .then((res)=>res.json()) 
+        .then((data)=>{
+          console.log(data)
+          form.reset();
+        }) 
+
+
 
     }
 
