@@ -1,8 +1,11 @@
-// import React from 'react'
+
 
 import SingleProduct from "./SingleProduct";
 
-export default function Products() {
+
+// eslint-disable-next-line react/prop-types
+export default function Products({data}) {
+  console.log(data);
   return (
     <div>
     
@@ -10,10 +13,27 @@ export default function Products() {
 
     <h1 className="my-8 text-2xl text-center font-bold">Our Products</h1>
     </div>
-    <div className="flex gap-2">
+    <div className="flex gap-2 px-6 justify-center items-center">
+    {/* <SingleProduct></SingleProduct>
     <SingleProduct></SingleProduct>
     <SingleProduct></SingleProduct>
     <SingleProduct></SingleProduct>
+    <SingleProduct></SingleProduct> */}
+
+    {
+      
+      // eslint-disable-next-line react/prop-types
+      data.map((shoe)=>(
+        <SingleProduct key={shoe.id}></SingleProduct>
+
+      ))
+
+    }
+
+    
+
+
+
     </div>
    
       

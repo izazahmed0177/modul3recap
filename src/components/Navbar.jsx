@@ -1,76 +1,163 @@
 // import React from 'react'
 
+import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth"
+// import { useSignOut } from 'react-firebase-hooks/auth';
 
 const Navbar = () => {
 
-  const {logOut,user}=useAuth;
+  
+
+  const {logOut,user,auth}=useAuth();
+
+
+  // const [signOut, loading, error] = useSignOut(auth);
 
   
   const handleLogout = async()=>{
     await logOut()
   }
-  // const handleLogout = ()=>{
-  //   logOut()
+  // console.log(logOut,user);
+  console.log(auth);
+
+  // if (error) {
+  //   return (
+  //     <div>
+  //       <p>Error: {error.message}</p>
+  //     </div>
+  //   );
+  // }
+  // if (loading) {
+  //   return <p>Loading...</p>;
+  // }
+
+
+
+  // const handleLogout = async()=>{
+  //   const success = await signOut();
+  //   if (success) {
+  //     alert('You are sign out');
+  //   }
   // }
 
 
 
     return (
         <>
-          <div className="navbar bg-base-100">
-  <div className="navbar-start">
-    <div className="dropdown">
-      <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+         <div className="navbar bg-base-100">
+      <div className="navbar-start">
+        <div className="dropdown">
+          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </div>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <Link to={"/"}>Home</Link>
+            </li>
+            <li>
+              <Link to={"/about"}>About</Link>
+            </li>
+            {
+              
+            }
+
+
+
+
+
+
+            {!user && (
+              <>
+                <li>
+                  <Link to={"/login"}>Login</Link>
+                </li>
+                <li>
+                  <Link to={"/register"}>Register</Link>
+                </li>
+              </>
+            )}
+
+
+
+            {user && (
+              <li>
+                <Link to={"/dashboard"}>Dashboard</Link>
+              </li>
+            )}
+            {user && (
+              <li>
+                <button
+                  onClick={handleLogout}
+                  className="btn bg-red-500 text-white"
+                >
+                  Logout
+                </button>
+              </li>
+            )}
+
+
+
+          </ul>
+        </div>
+        <a className="btn btn-ghost text-xl">daisyUI</a>
       </div>
-      <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-      <li><a href="/">Home</a></li>
-      <li><a href="/login">Login</a></li>
-      <li><a href="/register">Register</a></li>
-      <li><a href="/about">About</a></li>
-        <li>
-          <a>Parent</a>
-          <ul className="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </li>
-        <li><a href="dashboard">Dashboard</a></li>
-        {/* <li><button onClick={()=>logOut()}   className="btn bg-red-900 text-white">LogOut</button></li> */}
-        <li><button onClick={handleLogout}   className="btn bg-red-900 text-white">LogOut</button></li>
-      </ul>
-    </div>
-    <a className="btn btn-ghost text-xl">daisyUI</a>
-  </div>
-  <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal px-1">
-      <li><a href="/">Home</a></li>
-      <li><a href="/login">Login</a></li>
-      <li><a href="/register">Register</a></li>
-      <li><a href="/about">About</a></li>
-      <li>
-        <details>
-          <summary>Parent</summary>
-          <ul className="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </details>
-      </li>
-      <li><a href="dashboard">Dashboard</a></li>
-      {/* <li><button  onClick={()=>logOut()}  className="btn bg-red-900 text-white">LogOut</button></li> */}
-      <li><button  onClick={handleLogout}  className="btn bg-red-900 text-white">LogOut</button></li>
-    </ul>
-  </div>
-  <div className="navbar-end">
-  <div className="avatar">
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">
+          <li>
+            <Link to={"/"}>Home</Link>
+          </li>
+          <li>
+            <Link to={"/about"}>About</Link>
+          </li>
+          {!user && (
+            <>
+              <li>
+                <Link to={"/login"}>Login</Link>
+              </li>
+              <li>
+                <Link to={"/register"}>Register</Link>
+              </li>
+            </>
+          )}
+          {user && (
+            <li>
+              <Link to={"/dashboard"}>Dashboard</Link>
+            </li>
+          )}
+        </ul>
+      </div>
+      <div className="navbar-end space-x-2">
+        {user && (
+          <button
+            onClick={handleLogout}
+            className="btn bg-red-500 text-white hidden lg:block"
+          >
+            Logout
+          </button>
+        )}
+        <div className="avatar">
           <div className="w-12 rounded-full border-2 border-black">
             <img src={user?.photoURL || "/public/placeholder.jpg"} />
           </div>
         </div>
-  </div>
-</div>
+      </div>
+    </div>
         </>
     )
 }

@@ -6,7 +6,8 @@ import { app } from "../firebase/firebase.config";
 
 export const AuthContext=createContext(null);
 
-const auth = getAuth(app);
+ const auth = getAuth(app);
+// console.log(auth);
 
 // eslint-disable-next-line react/prop-types
 const AuthProvider=({children})=>{
@@ -37,9 +38,10 @@ const signIn=(email,password)=>{
 
 // ====================
 // ========logout============
-const logOut=()=>{
+const logOut=async ()=>{
 
-    return signOut(auth).then(()=>setUser(null));
+    await signOut(auth);
+    return setUser(null);
 }
 // ================
 
@@ -55,7 +57,7 @@ useEffect(()=>{
 const unscubcribe=onAuthStateChanged(auth,currentUser=>{
     if (currentUser) {
         setUser(currentUser)
-        console.log(currentUser);
+        // console.log(currentUser);
         setLoading(false)
     } else{
         setLoading(false)
@@ -70,7 +72,7 @@ return ()=>{
 
 
 
-const authInfo={user,googleLogin,createUser,signIn,logOut,loading}
+const authInfo={user,googleLogin,createUser,signIn,logOut,loading,auth}
 
 return(
     <AuthContext.Provider value={authInfo}>
