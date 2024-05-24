@@ -23,11 +23,17 @@ export default function Products({data}) {
     {
       
       // eslint-disable-next-line react/prop-types
-      data.map((shoe)=>(
-        <SingleProduct key={shoe.id}></SingleProduct>
+      /* data.map((shoe)=>(
+        <SingleProduct key={shoe.id} shoe={shoe}></SingleProduct>
+      )) */
 
+    }
+
+    {
+      // eslint-disable-next-line react/prop-types
+      data.slice(0, 3).map((shoe)=>(
+        <SingleProduct key={shoe.id} shoe={shoe}></SingleProduct>
       ))
-
     }
 
     
