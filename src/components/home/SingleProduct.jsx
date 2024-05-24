@@ -1,5 +1,7 @@
 // import React from 'react'
 
+import { Link } from "react-router-dom";
+
 // eslint-disable-next-line react/prop-types
 export default function SingleProduct({shoe}) {
   // eslint-disable-next-line react/prop-types
@@ -26,7 +28,7 @@ export default function SingleProduct({shoe}) {
     <h3 className="text-xl font-semibold text-yellow-700">{price}</h3>
     <p>{description}</p>
     <div className="card-actions justify-end">
-      <button className="btn btn-primary">Buy Now</button>
+      <Link to={`/products/${id}`} className="btn btn-primary">See Detalis</Link>
     </div>
   </div>
 </div>

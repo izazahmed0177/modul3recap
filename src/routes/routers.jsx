@@ -8,6 +8,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Dashboard from "../pages/Dashboard";
 import Registration from "../pages/Registration";
 import PrivateRoute from "./pravite/PrivateRoute";
+import ProductsDetels from "../pages/ProductsDetels";
 
 
 export const router = createBrowserRouter([
@@ -20,6 +21,12 @@ export const router = createBrowserRouter([
             path:"/",
             element:<Home></Home>,
             loader:()=>fetch("http://localhost:3000/shoes")
+
+        },
+        {
+            path:"/products/:id",
+            element:<ProductsDetels></ProductsDetels>,
+            loader:({params})=>fetch(`http://localhost:3000/shoes/${params.id}`)
 
         },
         {
