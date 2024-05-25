@@ -73,3 +73,8 @@ const {data} = await axios.post('https://httpbin.org/post', {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
 })
+
+
+===================================
+
+[AXIOS URL-Encoding Bodies](https://axios-http.com/docs/urlencoded)
