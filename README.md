@@ -52,3 +52,24 @@ Create a db.json or db.json5 file
 
 then
 $ npx json-server db.json
+
+
+Easy way fach ,POST,GET,DELET,PUT,PACH to use
+
+
+[Axios](https://axios-http.com/docs/intro)
+
+
+npm install axios
+
+
+
+const {data} = await axios.post('https://httpbin.org/post', {
+    firstName: 'Fred',
+    lastName: 'Flintstone',
+    orders: [1, 2, 3]
+  }, {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+})
