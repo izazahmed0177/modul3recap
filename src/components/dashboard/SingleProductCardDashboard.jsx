@@ -1,20 +1,21 @@
 // import React from 'react'
 
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 export default function SingleProductCardDashboard({shoe,onDelete}) {
     // eslint-disable-next-line react/prop-types
-    const {id, title ,brand,price,description,image_url}=shoe;
-    console.log(id); 
+    const {_id, title ,brand,price,description,image_url}=shoe;
+    console.log(_id); 
 
     const hendleDelete=async()=>{
-        await fetch(`http://localhost:3000/shoes/${id}`,{
+        await fetch(`http://localhost:5000/shoes/${_id}`,{
             method:"DELETE"
         })
         .then((res)=>res.json())
-        .then((data)=>console.log(data))
-        onDelete(id)
+        .then(()=>toast.success("product Deleted"))
+        onDelete(_id)
 
     }
 
@@ -45,11 +46,11 @@ export default function SingleProductCardDashboard({shoe,onDelete}) {
 
     <button className="btn bg-blue-600 text-white">
 
-      <Link to={`/products/${id}`} className="">See Detalis</Link>
+      <Link to={`/products/${_id}`} className="">See Detalis</Link>
     </button>
     <button className="btn bg-green-600 text-white">
 
-      <Link to={`edit/${id}`} className="">Edit</Link>
+      <Link to={`edit/${_id}`} className="">Edit</Link>
     </button>
     <button onClick={hendleDelete} className="btn bg-red-600 text-white">
 

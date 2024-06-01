@@ -1,11 +1,13 @@
 // import React from 'react'
 
+import toast from "react-hot-toast";
+
 export default function AddProducts() {
 
     const handleSubmit=async(e)=>{
         e.preventDefault();
         const form=e.target;
-        const id=form.id.value;
+        // const id=form.id.value;
         const title=form.title.value;
         const brand=form.brand.value;
         const price=form.price.value;
@@ -14,13 +16,14 @@ export default function AddProducts() {
 
         // console.log(id,title,price,brand,description,image_url);
 
-        const data={id,title,brand,price,description,image_url}
+        // const data={id,title,brand,price,description,image_url}
+        const data={title,brand,price,description,image_url}
         // console.log(data);
 
 
 
         // POST REQUESR
-        await fetch("http://localhost:3000/shoes",{
+        await fetch("http://localhost:5000/shoes",{
           method:"POST",
           headers:{
             "Content-type":"application/json"
@@ -31,6 +34,7 @@ export default function AddProducts() {
         .then((res)=>res.json()) 
         .then((data)=>{
           console.log(data)
+          toast.success("Product Add Successful")
           form.reset();
         }) 
 
@@ -60,9 +64,11 @@ export default function AddProducts() {
        <div className="mt-2">
         <input className="bg-gray-200 p-4 w-full border border-black rounded-lg" type="text" name="image_url" placeholder="Image Url"/>
        </div>
-       <div className="mt-2">
+
+      {/* { <div className="mt-2">
         <input className="bg-gray-200 p-4 w-full border border-black rounded-lg" type="text" name="id" placeholder="ID"/>
        </div>
+       } */}
 
        <div className="mt-2 flex justify-center items-center">
        <input className="btn mt-4 btn-info" type="submit" value="Add Product" />

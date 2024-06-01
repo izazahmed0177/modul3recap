@@ -8,7 +8,7 @@ function AllProducts( ) {
     const [products,setProducts]=useState([])
 
     useEffect(()=>{
-        fetch("http://localhost:3000/shoes")
+        fetch("http://localhost:5000/shoes")
         .then((res)=>res.json())
         // .then((data)=>console.log(data))
         .then((data)=>setProducts(data))
@@ -17,7 +17,7 @@ function AllProducts( ) {
 
 
     const handaleDeleteProduct=(id)=>{
-        setProducts(products.filter((product)=>product.id !==id));
+        setProducts(products.filter((product)=>product._id !== id));
     }
 
 
@@ -28,7 +28,11 @@ function AllProducts( ) {
         <div className="my-16 flex flex-wrap gap-5">
         {
             products.map((shoe)=>
-            <SingleProductCardDashboard key={shoe.id} shoe={shoe} onDelete={handaleDeleteProduct}></SingleProductCardDashboard>
+            <SingleProductCardDashboard key={shoe.id}
+             shoe={shoe} 
+             onDelete={handaleDeleteProduct}>
+
+             </SingleProductCardDashboard>
             )
         }
 

@@ -5,8 +5,8 @@ import { useLoaderData } from "react-router-dom"
 export default function ProductsDetels() {
     const shoe=useLoaderData()
 
-    const {id, title ,brand,price,description,image_url}=shoe;
-    console.log(id);
+    const {_id, title ,brand,price,description,image_url}=shoe;
+    console.log(_id);
   return (
     <div>
       {/* <h>{shoe.id}</h> */}

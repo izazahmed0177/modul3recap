@@ -53,6 +53,8 @@ Create a db.json or db.json5 file
 then
 $ npx json-server db.json
 
+ npm run dev
+
 
 Easy way fach ,POST,GET,DELET,PUT,PACH to use
 

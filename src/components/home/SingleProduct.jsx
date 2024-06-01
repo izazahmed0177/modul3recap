@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 // eslint-disable-next-line react/prop-types
 export default function SingleProduct({shoe}) {
   // eslint-disable-next-line react/prop-types
-  const {id, title ,brand,price,description,image_url}=shoe;
-  console.log(id);
+  const {_id, title ,brand,price,description,image_url}=shoe;
+  console.log(_id);
   return (
     <div>
     <div className="card w-96 bg-base-100 shadow-xl">
@@ -28,7 +28,7 @@ export default function SingleProduct({shoe}) {
     <h3 className="text-xl font-semibold text-yellow-700">{price}</h3>
     <p>{description}</p>
     <div className="card-actions justify-end">
-      <Link to={`/products/${id}`} className="btn btn-primary">See Detalis</Link>
+      <Link to={`/products/${_id}`} className="btn btn-primary">See Detalis</Link>
     </div>
   </div>
 </div>

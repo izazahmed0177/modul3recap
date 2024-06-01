@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 
 export default function EditProducts() {
@@ -12,7 +13,7 @@ export default function EditProducts() {
   const [price,setPrice]=useState(shoe.price)
   const [description,setDescription]=useState(shoe.description)
   const [image_url,setImage_url]=useState(shoe.image_url)
-  const [id,setId]=useState(shoe.id)
+  // const [id,setId]=useState(shoe.id)
 
 
 
@@ -21,7 +22,7 @@ export default function EditProducts() {
     const handleSubmit=async(e)=>{
         e.preventDefault();
         const form=e.target;
-        const id=form.id.value;
+        // const id=form.id.value;
         const title=form.title.value;
         const brand=form.brand.value;
         const price=form.price.value;
@@ -30,10 +31,27 @@ export default function EditProducts() {
 
         // console.log(id,title,price,brand,description,image_url);
 
-        const data={id,title,brand,price,description,image_url}
+        // const data={id,title,brand,price,description,image_url}
+        const data={title,brand,price,description,image_url}
         // console.log(data);
 
-        const editData=await axios.patch(`http://localhost:3000/shoes/${shoe.id}`,data)
+        const editData=await axios.patch(`http://localhost:5000/shoes/${shoe._id}`,data,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+        ).then(
+          (response) => {
+            console.log(response);
+            toast.success("üser Update dan")
+            console.log(response.status === 200, '🚀 User Updated');
+          },
+          (error) => {
+            console.log(error);
+          }
+        )
+        .catch((err) => console.log(err));
 
         console.log(editData);
 
@@ -90,11 +108,11 @@ export default function EditProducts() {
          className="bg-gray-200 p-4 w-full border border-black rounded-lg" 
         type="text" name="image_url" placeholder="Image Url"/>
        </div>
-       <div className="mt-2">
+       {/* <div className="mt-2">
         <input onChange={(e)=>setId(e.target.value)} value={id} 
          className="bg-gray-200 p-4 w-full border border-black rounded-lg" 
         type="text" name="id" placeholder="ID"/>
-       </div>
+       </div> */}
 
        <div className="mt-2 flex justify-center items-center">
        <input className="btn mt-4 btn-info" type="submit" value="Edit Product" />
