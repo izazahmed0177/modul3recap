@@ -5,7 +5,7 @@ import SingleProduct from "./SingleProduct";
 
 // eslint-disable-next-line react/prop-types
 export default function Products({data}) {
-  console.log(data);
+  // console.log(data);
   return (
     <div>
     

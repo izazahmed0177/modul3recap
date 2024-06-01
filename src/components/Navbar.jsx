@@ -8,7 +8,8 @@ const Navbar = () => {
 
   
 
-  const {logOut,user,auth}=useAuth();
+  // const {logOut,user,auth}=useAuth();
+  const {logOut,user,}=useAuth();
 
 
   // const [signOut, loading, error] = useSignOut(auth);
@@ -18,7 +19,7 @@ const Navbar = () => {
     await logOut()
   }
   // console.log(logOut,user);
-  console.log(auth);
+  // console.log(auth);
 
   // if (error) {
   //   return (

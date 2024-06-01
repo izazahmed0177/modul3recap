@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function SingleProduct({shoe}) {
   // eslint-disable-next-line react/prop-types
   const {_id, title ,brand,price,description,image_url}=shoe;
-  console.log(_id);
+  // console.log(_id);
   return (
     <div>
     <div className="card w-96 bg-base-100 shadow-xl">

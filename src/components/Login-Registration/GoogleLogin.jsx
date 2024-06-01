@@ -20,9 +20,30 @@ export default function GoogleLogin() {
               headers: {
                 'Content-Type': 'application/json'
               }
-            }).then((response) => {
-              console.log(response.status, response.data);
+            }).then(() => {
+              // console.log(response.status, response.data);
             });
+            // }).then((response) => {
+            //   console.log(response.status, response.data);
+            // });
+
+
+
+            // await fetch("http://localhost:5000/user",{
+            //   method:"POST",
+            //   headers:{
+            //     "Content-type":"application/json"
+            //   },
+            //   body:JSON.stringify(userInfo)
+    
+            // })
+            // .then((res)=>res.json()) 
+            // .then((data)=>{
+            //   console.log(data)
+            //   toast.success(" Add Successful")
+            // 
+            // }) 
+
           }
         })
     }
