@@ -1,5 +1,6 @@
 // import React from 'react'
 
+import axios from "axios";
 import useAuth from "../../hooks/useAuth"
 
 export default function GoogleLogin() {
@@ -7,7 +8,23 @@ export default function GoogleLogin() {
     const {googleLogin}=useAuth();
 
     const handleGoogleSignIn=()=>{
-        googleLogin()
+        googleLogin().then((data)=>{
+          // console.log(data);
+          if (data?.user?.email) {
+            const userInfo={
+              email:data?.user?.email,
+              name:data?.user?.displayName,
+              image:data?.user?.photoURL
+            }
+            axios.post("http://localhost:5000/user", userInfo,{
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            }).then((response) => {
+              console.log(response.status, response.data);
+            });
+          }
+        })
     }
 
 
