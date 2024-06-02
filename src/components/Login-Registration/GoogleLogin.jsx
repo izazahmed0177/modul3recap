@@ -8,6 +8,7 @@ export default function GoogleLogin() {
     const {googleLogin}=useAuth();
 
     const handleGoogleSignIn=()=>{
+      const token=localStorage.getItem('token')
         googleLogin().then((data)=>{
           // console.log(data);
           if (data?.user?.email) {
@@ -16,11 +17,21 @@ export default function GoogleLogin() {
               name:data?.user?.displayName,
               image:data?.user?.photoURL
             }
+
+            const headers = {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            }
+
+
             axios.post("http://localhost:5000/user", userInfo,{
-              headers: {
-                'Content-Type': 'application/json'
-              }
-            }).then(() => {
+              headers: headers
+            }).then((data) => {
+              // console.log(data?.token);
+              // console.log(data);
+              // console.log(data?.data);
+              // console.log(data?.data?.token);
+              localStorage.setItem('token',data?.data?.token)
               // console.log(response.status, response.data);
             });
             // }).then((response) => {

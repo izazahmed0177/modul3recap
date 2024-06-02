@@ -10,8 +10,13 @@ export default function SingleProductCardDashboard({shoe,onDelete}) {
     console.log(_id); 
 
     const hendleDelete=async()=>{
+      const token=localStorage.getItem('token')
         await fetch(`http://localhost:5000/shoes/${_id}`,{
-            method:"DELETE"
+            method:"DELETE",
+            headers:{
+              "Content-type":"application/json",
+              authorization: `Bearer ${token}`
+            },
         })
         .then((res)=>res.json())
         .then(()=>toast.success("product Deleted"))

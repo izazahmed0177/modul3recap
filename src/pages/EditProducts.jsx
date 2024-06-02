@@ -20,6 +20,7 @@ export default function EditProducts() {
 
   // console.log(shoe);
     const handleSubmit=async(e)=>{
+      const token=localStorage.getItem('token')
         e.preventDefault();
         const form=e.target;
         // const id=form.id.value;
@@ -35,11 +36,18 @@ export default function EditProducts() {
         const data={title,brand,price,description,image_url}
         // console.log(data);
 
+        const headers = {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+
         const editData=await axios.patch(`http://localhost:5000/shoes/${shoe._id}`,data,
         {
-          headers: {
-            'Content-Type': 'application/json'
-          }
+          // headers: {
+          //   'Content-Type': 'application/json',
+          //   authorization:`Bearer ${token}`
+          // }
+          headers:headers
         }
         ).then(
           (response) => {

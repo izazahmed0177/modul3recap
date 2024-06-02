@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 export default function AddProducts() {
 
     const handleSubmit=async(e)=>{
+
+      const token=localStorage.getItem('token')
         e.preventDefault();
         const form=e.target;
         // const id=form.id.value;
@@ -26,7 +28,8 @@ export default function AddProducts() {
         await fetch("http://localhost:5000/shoes",{
           method:"POST",
           headers:{
-            "Content-type":"application/json"
+            "Content-type":"application/json",
+            authorization: `Bearer ${token}`
           },
           body:JSON.stringify(data)
 
